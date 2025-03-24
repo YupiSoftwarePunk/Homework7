@@ -8,7 +8,7 @@ namespace Homework7
 {
     public class Store<T> : IStore<T> where T : IProduct
     {
-        List<T> store = new List<T>();
+        private List<T> store = new List<T>();
 
         public void Add(T product)
         {
@@ -45,7 +45,7 @@ namespace Homework7
             }
             else
             {
-                throw new InvalidOperationException("Товара с таким Id не существует!!");
+                throw new Exception("Товара с таким Id не существует!!");
             }
         }
 
@@ -58,7 +58,7 @@ namespace Homework7
             }
             else
             {
-                throw new InvalidOperationException("Товара с таким Id не существует!!");
+                throw new ArgumentException("Товара с таким Id не существует!!");
             }
         }
 
@@ -71,19 +71,26 @@ namespace Homework7
             }
             else
             {
-                throw new InvalidOperationException("Товара с таким Id не существует!!");
+                throw new ArgumentException("Товара с таким Id не существует!!");
             }
         }
 
         public List<T> GetProductsByCategory(string category)
         {
-
+            return store.OrderBy(i => i.Category == category).ToList();
         }
 
         public Dictionary<string, List<T>> GroupByCategory()
         {
+            Dictionary<string, List<T>> groups = new Dictionary<string, List<T>>();
+            var result = store.GroupBy(i => i.Category);
 
+            foreach (var i in result)
+            {
+                groups[i.Key] = i.ToList();
+            }
+
+            return groups;
         }
-
     }
 }
