@@ -55,6 +55,7 @@ namespace Homework7
             if (item != null)
             {
                 item.Price = newPrice;
+                Console.WriteLine($"Новая цена = {item.Price}");
             }
             else
             {
@@ -68,6 +69,7 @@ namespace Homework7
             if (item != null)
             {
                 item.Quantity = newQuantity;
+                Console.WriteLine($"Новое кол-во = {item.Quantity}");
             }
             else
             {
@@ -77,7 +79,7 @@ namespace Homework7
 
         public List<T> GetProductsByCategory(string category)
         {
-            return store.OrderBy(i => i.Category == category).ToList();
+            return store.Where(i => i.Category == category).ToList();
         }
 
         public Dictionary<string, List<T>> GroupByCategory()
