@@ -13,5 +13,15 @@ namespace Homework7
         public decimal Price { get; set; }
         public string Category { get; set; }
         public int Quantity { get; set; }
+
+
+        public Product(int id, string name, decimal price, string category, int quantity)
+        {
+            Id = id;
+            Name = name;
+            Price = price;
+            Category = category;
+            Quantity = quantity;
+        }
     }
 }
